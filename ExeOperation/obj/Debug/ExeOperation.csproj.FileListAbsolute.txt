@@ -1,0 +1,7 @@
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\obj\Debug\ExeOperation.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\bin\Debug\ExeOperation.dll
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\bin\Debug\ExeOperation.pdb
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\bin\Debug\CalcLibrary.dll
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\bin\Debug\CalcLibrary.pdb
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\obj\Debug\ExeOperation.dll
+C:\Users\Asus\Desktop\CalcTest\ExeOperation\obj\Debug\ExeOperation.pdb
