@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    public class SumOperation : IOperationargs
+    public class SumOperation : IOperationArgs
     {
-        public string NameofOperation
+        public string Name
         {
             get { return "sum"; }
         }
 
-        public double Execute(double[] args)
+        public double Calc(IEnumerable<int> args)
         {
-            throw new NotImplementedException();
+
+            return args.Sum();
         }
 
-        public double Execute(double x, double y)
+        public double Calc(int x, int y)
         {
             return x + y;
         }

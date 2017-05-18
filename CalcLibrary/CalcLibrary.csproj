@@ -41,9 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calc.cs" />
-    <Compile Include="DefaultOperations\DivOperationOne.cs" />
-    <Compile Include="DefaultOperations\DivOperation.cs" />
-    <Compile Include="DefaultOperations\MinOperation.cs" />
+    <Compile Include="DefaultOperations\DivideOperation.cs" />
+    <Compile Include="DefaultOperations\DivideOneOperation.cs" />
     <Compile Include="DefaultOperations\MulOperation.cs" />
     <Compile Include="DefaultOperations\SumOperation.cs" />
     <Compile Include="IOperation.cs" />

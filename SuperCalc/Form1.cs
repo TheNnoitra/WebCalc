@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using CalcLibrary;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SuperCalc
@@ -13,51 +10,95 @@ namespace SuperCalc
     public partial class Form1 : Form
     {
 
-        private CalcLibrary.Calc Calc { get; set; }
+        private class OperationBeauty
+        {
+            public OperationBeauty(IOperation operation)
+            {
+                Operation = operation;
+
+                var type = operation.GetType();
+                
+                Name = $"{type.Name}.{operation.Name}";
+            }
+
+            public IOperation Operation { get; set; }
+
+            public string Name { get; set; }
+        }
+
+        private Calc Calc { get; set; }
+
         public Form1()
         {
             InitializeComponent();
-            Calc = new CalcLibrary.Calc();
+            Calc = new Calc();
 
-            CBOper.Items.AddRange(Calc.Operations.Select(o=>o.NameofOperation).ToArray());
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LBL2_Click(object sender, EventArgs e)
-        {
-
+            cbOper.DataSource = Calc.Operations.Select(o => new OperationBeauty(o)).ToList();
+            cbOper.DisplayMember = "Name";   
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Result.Text = "";
-            var x = TB1.Text;
-            var y = TB2.Text;
-            var oper = CBOper.Text;
+            lResult.Text = "";
+            
+            object result = null;
 
-            object result=null;
+            var operB = cbOper.SelectedItem as OperationBeauty;
+
+            var oper = operB.Operation;
+
+            var moreArgs = oper is IOperationArgs;
+
+            var args = new List<object>();
+
+            if (moreArgs)
+            {
+                // "1 2 3" => new string [] {"1", "2", "3"}
+                args.AddRange(tbMore.Text.Split(' '));
+            }
+            else
+            {
+                var x = tbX.Text;
+                var y = tbY.Text;
+                args.Add(x);
+                args.Add(y);
+            }
+
             try
             {
-                result = Calc.Execute(oper, new object[] { x, y });
+                result = Calc.Execute(oper, args.ToArray());
             }
             catch (DivideByZeroException ex)
             {
-                Result.Text = $"DivideByZero{ex.Message}";
+                lResult.Text = $"DivideByZero: {ex.Message}";
             }
             catch (Exception ex)
             {
-                Result.Text = $"Error{ex.Message}";
+                lResult.Text = $"Error: {ex.Message}";
             }
+
             if (result != null)
             {
-                Result.Text = $"{x}{oper}{y}={result}";
+                lResult.Text = $"{result}";
             }
+        }
 
+        private void cbOper_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var operB = cbOper.SelectedItem as OperationBeauty;
+            var moreArgs = operB.Operation is IOperationArgs;
 
+            panTwoArgs.Visible = !moreArgs;
+            panMoreArgs.Visible = moreArgs;
+        }
+
+        private void cbOper_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            var item = (cbOper.Items[e.Index] as OperationBeauty);
+            Brush brush = item.Operation is IOperationArgs ? Brushes.Green : Brushes.Black;
+            e.Graphics.DrawString(item.Name, e.Font, brush, e.Bounds);
+            e.DrawFocusRectangle();
         }
     }
 }

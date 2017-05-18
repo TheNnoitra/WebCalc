@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    public class MulOperation : IOperationargs
+    public class MulOperation : IOperation
     {
-        public string NameofOperation
+        public string Name
         {
             get { return "mul"; }
         }
 
-        public double Execute(double[] args)
-        {
-            throw new NotImplementedException();
-        }
 
-        public double Execute(double x, double y)
+
+
+        public double Calc(int x, int y)
         {
             return x * y;
         }

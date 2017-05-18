@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary
 {
-    
     public interface IOperation
     {
-        string NameofOperation { get; }
+        string Name { get; }
 
-        double Execute(double x, double y);
-
+        double Calc(int x, int y);
     }
-    
-    public interface IOperationargs : IOperation
+
+    public interface IOperationArgs : IOperation
     {
-        
-        double Execute(IEnumerable<double> args);
-        
+        double Calc(IEnumerable<int> args);
     }
 }

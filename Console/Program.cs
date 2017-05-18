@@ -17,11 +17,20 @@ namespace Console
             int y;
             int.TryParse(args[1], out y);
 
-            var ioperation = args[2];
+            var operation = args[2];
 
             double result = 0;
-            
-            Output.WriteLine($"{x} {ioperation} {y} = {result}");
+
+            if (operation == "sum")
+            {
+                result = test.Sum(x, y);
+            }
+            else if (operation == "divide")
+            {
+                result = test.Divide(x, y);
+            }
+
+            Output.WriteLine($"{x} {operation} {y} = {result}");
 
             Output.ReadKey();
         }

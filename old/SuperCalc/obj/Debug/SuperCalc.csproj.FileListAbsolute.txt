@@ -1,0 +1,11 @@
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\bin\Debug\SuperCalc.exe.config
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\bin\Debug\SuperCalc.exe
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\bin\Debug\SuperCalc.pdb
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\bin\Debug\CalcLibrary.dll
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\bin\Debug\CalcLibrary.pdb
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.Form1.resources
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.Properties.Resources.resources
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.csproj.GenerateResource.Cache
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.exe
+C:\Users\Asus\Desktop\CalcTest\SuperCalc\obj\Debug\SuperCalc.pdb

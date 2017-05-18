@@ -1,0 +1,9 @@
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\CalcTest.dll
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\CalcTest.pdb
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\CalcLibrary.dll
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\CalcLibrary.pdb
+C:\Users\Asus\Desktop\CalcTest\CalcTest\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Asus\Desktop\CalcTest\CalcTest\obj\Debug\CalcTest.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\CalcTest\CalcTest\obj\Debug\CalcTest.dll
+C:\Users\Asus\Desktop\CalcTest\CalcTest\obj\Debug\CalcTest.pdb

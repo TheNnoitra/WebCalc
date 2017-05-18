@@ -10,35 +10,44 @@ namespace CalcLibrary
 {
     public class Calc
     {
-        public Calc()
+        private string ExtendDllDirectory { get; set; }
+
+        public Calc() : this("")
+        {
+        }
+
+       
+
+        public Calc(string extendDllDirectory)
         {
             Operations = new List<IOperation>();
-            //tipy iz sborki
-            var assm = Assembly.GetAssembly(typeof(IOperation));
 
-            var types = assm.GetTypes().ToList();
-            //найти длл рядом с нашим exe
-            var dlls =  Directory.GetFiles(Directory.GetCurrentDirectory(), "*.dll");
+            //var assm = Assembly.GetAssembly(typeof(IOperation));
+            //var types = assm.GetTypes().ToList();
+            var types = new List<Type>();
+            // найти длл рядом с нашим exe
+
+            var path = string.IsNullOrWhiteSpace(extendDllDirectory)
+                ? Directory.GetCurrentDirectory()
+                : extendDllDirectory;
+
+            var dlls = Directory.GetFiles(path, "*.dll");
             foreach (var dll in dlls)
             {
-                //загрузить ее как сборку
-                assm = Assembly.LoadFile(dll);
-                //добавить типы
+                // загрузить ее как сборку
+                var assm = Assembly.LoadFrom(dll);
+                // добавить типы
                 types.AddRange(assm.GetTypes());
-        
             }
 
-            
-
             var ioper = typeof(IOperation);
-
             foreach (var type in types)
             {
                 if (type.IsInterface)
                     continue;
 
                 var interfaces = type.GetInterfaces();
-                if (interfaces.Contains(ioper))
+                if (interfaces.Any(i=>i.FullName == ioper.FullName))
                 {
                     var oper = Activator.CreateInstance(type) as IOperation;
                     if (oper != null)
@@ -60,47 +69,50 @@ namespace CalcLibrary
         /// <param name="operation">Название операции</param>
         /// <param name="args">Аргументы операции</param>
         /// <returns></returns>
-       public object Execute(string operation, object[] args)
+        public object Execute(IOperation operation, object[] args)
         {
-            // находим операцию в списке доступных
-            var oper = Operations.FirstOrDefault(it => it.NameofOperation == operation);
+            if (operation == null)
+                return null;
 
-            // если не нашли - возращаем ошибку
-            if (oper == null)
-            {
-                return "Error";
-            }
+            double result = 0;
 
-            // если нашли
-            // разибраем аргрументы
-           
-         
-            var operArgs = oper as IOperationargs;
-
-            // вызываем саму операцию
-            var result = oper.Execute(x, y);
+            var operArgs = operation as IOperationArgs;
             if (operArgs != null)
             {
-                result = operArgs.Execute(args.Cast<double>());
-
+                result = operArgs.Calc(
+                    args.Select(it => int.Parse(it.ToString()))
+                );
             }
             else
             {
+                // разибраем аргрументы
                 int x;
                 int.TryParse(args[0].ToString(), out x);
 
                 int y;
                 int.TryParse(args[1].ToString(), out y);
 
-                result = oper.Execute(x,y);
-
+                result = operation.Calc(x, y);
             }
-
 
             // возвращаем результат
             return result;
         }
-        
+
+        /// <summary>
+        /// Выполнить операцию
+        /// </summary>
+        /// <param name="operation">Название операции</param>
+        /// <param name="args">Аргументы операции</param>
+        /// <returns></returns>
+        [Obsolete]
+        public object Execute(string operation, object[] args)
+        {
+            // находим операцию в списке доступных
+            var oper = Operations.FirstOrDefault(it => it.Name == operation);
+
+            return Execute(oper, args);
+        }
 
         [Obsolete("Не используйте")]
         public int Sum(int x, int y)
@@ -109,6 +121,7 @@ namespace CalcLibrary
             return int.Parse(r.ToString());
         }
 
+        [Obsolete("Не используйте")]
         public double Divide(int x, int y)
         {
             var r = Execute("divide", new object[] { x, y });

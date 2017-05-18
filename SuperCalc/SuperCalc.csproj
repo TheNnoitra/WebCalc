@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F41396BA-030C-4677-9BC8-A1FF3636E482}</ProjectGuid>
+    <ProjectGuid>{0FF38DD1-E6CA-4D1B-9214-A928513E16A9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuperCalc</RootNamespace>
